@@ -77,9 +77,7 @@ class MiniTransformerDataset(Dataset):
             self.verify_labels()
 
     def verify_labels(self):
-        """
-        Verifies that the provided CSV labels match the teacher rule exactly.
-        """
+        
         mismatch_count = 0
 
         for idx in range(len(self.df)):
