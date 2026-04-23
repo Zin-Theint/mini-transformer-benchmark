@@ -1,38 +1,15 @@
 import os
 import time
-import random
-import numpy as np
 import torch
 import torch.nn as nn
 
 from data import create_dataloader
 from model import MiniTransformerClassifier
-
-
-def set_seed(seed=42):
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(seed)
-
-
-def calculate_accuracy(logits, labels):
-    """
-    logits: (batch_size,)
-    labels: (batch_size,)
-    """
-    probs = torch.sigmoid(logits)
-    preds = (probs >= 0.5).float()
-    correct = (preds == labels).sum().item()
-    total = labels.size(0)
-    return correct / total
-
+from utils import set_seed, calculate_accuracy, count_parameters
 
 def train_one_epoch(model, dataloader, criterion, optimizer, device):
     model.train()
-
+    
     total_loss = 0.0
     total_correct = 0
     total_samples = 0
@@ -90,10 +67,6 @@ def evaluate(model, dataloader, criterion, device):
     avg_acc = total_correct / total_samples
 
     return avg_loss, avg_acc
-
-
-def count_parameters(model):
-    return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
 
 def main():
@@ -272,7 +245,7 @@ def main():
         f.write(f"use_positional_encoding: {use_positional_encoding}\n")
         f.write(f"Parameter count: {count_parameters(model)}\n")
         f.write(f"Best validation loss: {best_val_loss:.6f}\n")
-        f.write(f"Validation accuracy at best loss: {best_val_acc:.6f}\n")
+        f.write(f"Validation accuracy at best validation loss: {best_val_acc:.6f}\n")
         f.write(f"Best epoch: {best_epoch}\n")
         f.write(f"Test loss: {test_loss:.6f}\n")
         f.write(f"Test accuracy: {test_acc:.6f}\n")

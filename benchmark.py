@@ -7,8 +7,8 @@ import pandas as pd
 
 from data import create_dataloader
 from model import MiniTransformerClassifier
-from train import train_one_epoch, evaluate, set_seed, count_parameters
-
+from train import train_one_epoch, evaluate
+from utils import set_seed, count_parameters
 
 # -----------------------------
 # CONFIG (shared across all runs)
