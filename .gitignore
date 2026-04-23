@@ -8,4 +8,5 @@ venv/
 !.vscode/settings.json
 !.vscode/extensions.json
 !.vscode/launch.json
+results/*.pt
 .ipynb_checkpoints/
