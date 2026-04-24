@@ -72,6 +72,7 @@ mini-transformer-benchmark/
 ├── utils.py
 ├── requirements.txt
 └── README.md
+└── report.pdf
 ```
 
 ---
@@ -156,6 +157,21 @@ The following configurations are evaluated:
 
 ---
 
+### Training Setup
+
+- Training is performed with 15 epochs for single-model training
+- Benchmark experiments are conducted with 10 and 20 epochs
+
+---
+
+## Key Results
+
+- Model D achieves the best performance (~99% test accuracy)
+- Positional encoding significantly improves performance
+- Increasing heads and layers improves accuracy
+
+---
+
 ## Model Architecture
 
 The Transformer encoder is implemented manually using PyTorch:
@@ -178,3 +194,7 @@ The Transformer encoder is implemented manually using PyTorch:
 - Model selection is based on validation loss
 
 ---
+
+## Report
+
+See `report.pdf` for full analysis and detailed results.
